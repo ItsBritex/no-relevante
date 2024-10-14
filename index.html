@@ -5,9 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nada Importante</title>
     <style>
+        @keyframes parpadeo {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
         body{
+            font-family: Arial, sans-serif;
+            height: 100vh;
             background-color: black;
             color: white;
+            height: 100vh;
+        }
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(51, 51, 51, 0.5);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            transition: background-color 0.5s ease, padding 0.5s ease;
+            z-index: 999;
+        }
+        nav.solid {
+            background-color: rgba(51, 51, 51, 1);
+            padding: 20px 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #555;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        #dateBox, #timeBox {
+            text-align: center;
         }
         .fecha{
             background-color: #191919;
@@ -17,6 +65,14 @@
         }
         img{
             border-radius: 10px;
+        }
+        #Hora {
+            background-color: #313131;
+            border-radius: 10px;
+        }
+        #Hora p {
+            text-align: center;
+            animation: parpadeo 1s infinite;
         }
         .conversation {
             background-color: #fff;
@@ -46,8 +102,49 @@
             color: green;
         }
     </style>
+    <script>
+        window.onload = function() {
+            function updateDateTime() {
+                const dateBox = document.getElementById("dateBox");
+                const timeBox = document.getElementById("timeBox");
+
+                // Obtener la fecha y hora actuales
+                const now = new Date();
+
+                // Formatear la fecha como 'día/mes/año'
+                const date = now.toLocaleDateString();
+
+                // Formatear la hora con segundos
+                const time = now.toLocaleTimeString();
+
+                // Actualizar el contenido de las cajas
+                dateBox.textContent = `Fecha: ${date}`;
+                timeBox.textContent = `Hora: ${time}`;
+            }
+
+            // Llamar a la función inmediatamente y cada segundo
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+
+            // Efecto de scroll en el nav
+            const navbar = document.getElementById("navbar");
+            window.onscroll = function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add("solid");
+                } else {
+                    navbar.classList.remove("solid");
+                }
+            };
+        };
+    </script>
 </head>
 <body>
+    <nav>
+        <div class="container">
+            <div class="box" id="dateBox"></div>
+            <div class="box" id="timeBox"></div>
+        </div>
+    </nav>
     <h1 class="fecha">Nada Importante   12-01-24</h1>
         <p style="display: flex; justify-content: center;">Okay, creé esto con tal de tener mis textos de mi libreta en un archivo de texto como podria ser <br>
         esta página, y luego poder leerlo en cualquier momento, tengo miedo sobre lo que pueda llegar a pasar realmente <br>
@@ -502,7 +599,7 @@
         Si no ibas a quedarte,
         ¿por qué me desnudaste el alma?
     </p>
-    <h3 class="fecha">Preparatoria     18-08-24</h3>
+    <h3 class="fecha">Preparatoria     19-08-24</h3>
     <p>Hoy en la mañana, estuve pensando. ¿Qué es lo que haré en la preparatoria? ¿Qué temas nuevos conoceré? ¿Qué personas conoceré? Hoy en la mañana, conocí a alguien. Bueno, no conocí a alguien, sino que la vi. Estaba viéndome alrededor cuando nos estaban asignando nuestros grupos cuando llegamos a la preparatoria. Y cuando me terminaron de asignar mi grupo... Bueno, antes de eso yo estaba muy nervioso. Cuando nos asignaron nuestros grupos, vi a una chica a la cual me llamaba la atención desde que llegamos, literalmente. Solamente la vi entrar, y fue tipo, ojalá me toque con ella. Y adivina qué, querido diario, o lo que sea que sea esta cosa, me tocó con ella. Me sentí raro. Dije, no se lo han equivocado, ojalá no, ojalá se quede aquí. Es muy guapa. Bueno, nos pasaron a nuestros salones, y solo vi cuando entró ella a un salón del primero 2 y dije, ah bueno, está bien. Pues ella va en ese salón, ¿no? Y ya después se metió de vuelta al salón del primero 1, porque ese salón me designaron a mí. Y solamente vi cómo se sentó. Y la vi sonriendo. Tiene una sonrisa muy linda. Y me llamó la atención también por su sudadera. Su sudadera de anime. Dije, ok, bueno, pues ya podemos tener un tema en común. Y me interesó. Me llamó la atención. Dije, qué curioso. Me senté al lado de ella, con tal de poderle hablar, pero me dio mucha pena, tan siquiera hablarle. No sabía cuál podría ser su reacción. Después nos cambiaron de lugar. Y ya. No le pude hablar. Se quedó casi hasta enfrente. Y ya. Y ya me quedé hasta atrás. Y conocí a más personas. Conocí a Cris, Fátima y Miguel. A Miguel le gusta a Kino, como a mí me gusta aquino. Aquino, así. Y Cris es alguien muy amable y muy social. Y Fátima es amiga de Cris. Y ya. Eso es todo lo que paso hoy. Conocí a más personas. Y los maestros, pues ya sabes. Las materias siempre. Los maestros lo que hacen cuando vas llegando a una escuela. Lo mismo de siempre.</p>
     <h3 class="fecha">Karina?     20-08-24</h3>
     <p>Le dije a Chris que me gustaba Karina. Chris en realidad se llama Ashley. Y le dije sobre mi interés sobre Karina. Me animé a hablarle. La tipa se llama Karina. Y es muy buena gente. Casi no habla. Me interesa qué puedo conocer de ella. ¿Quién es ella? ¿Quién será? ¿Quién será? Me gusta cómo se ve. Me gusta cómo viste. Me gustan sus gustos.</p>
@@ -514,9 +611,17 @@
     <h3 class="fecha">Pareja     1-10-24</h3>
     <p>Y ya dejé de escribir en mi libreta. Me gusta escribir. Pero no sé por qué dejé de escribir en la libreta. Ya pasó un tiempo. Uno de octubre ya. Somos novios. Ya vamos a cumplir un mes. El 9 de septiembre me le declaré. Ya es uno de octubre. Ya. Ya un mes. Y ya dejé de escribir en mi libreta. Me gusta escribir. Pero no sé por qué dejé de escribir en la libreta. Ya pasó un tiempo. Uno de octubre ya. Me le declaré. Ya es uno de octubre. Ya. Ya un mes. Ya casi un mes. Qué emocionante. Qué rápido pasa el tiempo. Qué... Qué miedo a veces da el tiempo porque pasa demasiado rápido. Espero poder durar con ella bastante tiempo. Mucho tiempo. Demasiado tiempo. La quiero a ella. La amo a ella. Hemos vivido varias experiencias como por ejemplo... Me ha dado regalos. Le he dado muchos dibujos. No tengo fotos de ellos. Pero sí tengo fotos de sus regalos. Y también me ha dado galletitas. En los recesos. Y es tipo wow. Cuando me estoy moviendo de hambre me sirve mucho. Aunque muy me da pena recibirle la comida así de la nada. A Connie me gusta. Me gusta cómo actúa. Me gusta sus ojos. Sus lentes. Cómo se maquilla. Me gustaría conocerla sin maquillaje. Es hermosa ella. Es buenísima. Me encanta. Me manda fotos de ella. Y vídeos de ella y sus amigas y etcétera. Sus familiares. Me encanta eso. Que me mande fotos así. Con mucha confianza. ¿Qué más se puede decir? Lo siento. Ya hace mucho no tomo este hábito de vuelta. De escribir. En fin. A Karina yo la aprecio mucho. No quiero que se olvide de mi vida. Tengo un miedo intenso. Y pareciera una obsesión pero en serio. La miedo que se separa de mí. Si se puede la quiero tener toda mi vida. Ya le he contado mis planes al futuro. Mis planes. Yo quiero ser un buen padre. Ese padre que yo no tuve. Lo quiero ser yo. No quiero ser un padre que permita a todos sus hijos. Pero quiero ser un padre que les enseñe a sus hijos. Cómo poner límites. Cómo darse a respetar. Cómo respetar. Le he contado todo ese tipo de cosas. Pero yo quiero ser un padre que les enseñe a sus hijos. Cómo poner límites. Cómo darse a respetar. Cómo respetar. Le he contado todo ese tipo de cosas. A Karina. En serio. Tiene unos ojos muy bonitos. Una boca. Unos labios. Hermosos. Sus orejitas. Su pancita. Sus manitas. Sus lentes. Su cara. Cuello. Cabello. Todo. Sus piernas. Absolutamente como me encanta de ella. No puedo parar de pensar en ella. Simplemente la amo. No creo que haga falta darle mil significados a la palabra te amo. Porque esa palabra ya los abarca. Y es más. No solamente la amo. Creo que es algo trascendental. No se queda solamente en un simple te amo. Aunque tiene muchas inseguridades por su pasado. Yo aún la quiero. Espero poderla quitar esas inseguridades. Quiero ser ese hombre el cual no la haga llorar. Si la hago llorar, que sea por algo bueno, por favor. No quiero volver a ver la cara de alguien llorando por mi culpa. O alguien diciéndome que le doy asco por algo que no le gustó de mí. Quiero verla bien. Aunque no siempre se pueda. Y en sus momentos malos quiero llorar con ella. Quiero estar para ella. Quiero estar con ella. Quiero estar con ella. Y en sus momentos malos quiero llorar con ella. Quiero estar para ella. Quiero estar con ella.</p>
     <h3 class="fecha">¿Me quieres por quien soy?     <div>13-10-24</div></h3>
-    <p>El día de ayer, Karina me puso una pregunta. Me planteó algo. Me hizo preguntas, me cuestionó. No de la manera mala, sino de la manera buena, sino para conocerme más. Es interesante, le he dicho que la mente de las personas, porque así lo veo yo, son magníficas. Grandes. Galaxias. Planetas. Pero... Pero estos últimos días yo me he estado sintiendo mal. Terriblemente mal. No me siento suficiente para mi novia. No me siento suficiente para mí. No quiero seguir haciendo videos para YouTube. Ya no los hago. Ya no ido a nadar. Ya no programo. Solamente programo y sigo programando para este documento, toda esta página que he estado haciendo durante todo este año. Quiero simplemente... dejar de existir. Dejar de estar aquí. Pero no se puede eso. Quiero terminar alguna vez con todo esto. En fin. Ese no es el punto. Ese no es el tema. Karina también ha estado pasando unos días malos. Y totalmente la entiendo. Sabes, somos personas. Cambiamos constantemente. Karina me planteó una pregunta. La cual es causante de sus pequeñas, grandes ansiedades. Ataques de ansiedad. Me ha dicho. Me ha preguntado. ¿Quieres a las personas porque realmente las quieres? ¿Quieres a las personas porque realmente las quieres? ¿O las quieres porque quieres conocer más su forma de pensar? Y me puso a pensar un buen rato. Es decir. Mi forma de pensar sobre eso. Llegar a la conclusión. Mi forma de pensar sobre eso es. No voy a querer a nadie. Si no quiero saber su forma de pensar. Pero tampoco me interesa la forma de pensar de alguien que no quiero. Entonces ahí es como un duelo. Por así decirlo. Si los divides. Porque una cosa no es nada si no se complementa de la otra. Entonces es como algo interno que podría llegar a detener yo. Ella me gusta. A ella yo la quiero. Me interesa tanto su forma de pensar. Tanto su forma de querer. Tanto todo lo que ella tiene. Sus características. Para esto tenemos que subdividirlo en muchas partes. Y tener una idea. Y tener una idea. Y tener una idea. Y tener una idea. Para esto tenemos que subdividirlo en muchas partes. Y tenemos que. Que tomar en cuenta muchos aspectos porque si lo dejamos solamente. Querer. Y saber la forma de pensar de alguien. Se queda en el aire. Es muy general. Entonces tendríamos que ser más específicos en ese aspecto con todo eso. Eso es lo que yo le dije. Y Karina solamente estuvo escuchándome. Realmente. Le dije que si no me interesara su forma de pensar no la querría. Una cosa lleva de la mano a la otra. Si solamente la quisiera ni siquiera le preguntaría como es que piensa. O ni siquiera me interesaría la forma en la que ella piensa. Sus sentimientos me importarían solamente. Sus sentimientos hacia mí. Sus sentimientos. Solamente eso me interesaría. También como se ve. Y ya. Es todo. Más sin embargo yo quiero conocerla más. Pero si solamente quisiera conocerla más no la estaría queriendo. Yo quiero conocer más de su pasado. Su forma de pensar. Cómo es que se formó hasta ahora. Me interesa saber de ella. Y me interesa porque la quiero. No puedo querer a alguien si no me interesa su forma de pensar. Y no me puede interesar la forma de pensar de alguien si no quiero a ese alguien. No podemos admirar a las personas solamente por ser ellos. Sino que hay algo detrás. Queremos saber de su pasado. Queremos saber cómo están ahí. O las miramos a las personas por cómo llegaron hasta ahí. Las queremos. Ya sea por... Bueno, esto ya se divide en muchas partes de cómo sea nuestra manera de pensar. O hasta cómo queremos a las personas. Ya sea en el ámbito familiar, en amigos, pareja, siendo fan de otra persona. Y le puse esa idea. Me hizo pensar mucho. Pero yo deduje que eso me lo preguntó. Porque no sabe si confiar en mí. Para contar algo más íntimo. Y al final estuve en lo correcto. Creo que dije las palabras correctas. Porque antes de colgarme, me dijo... Entonces, si yo... Entonces yo puedo confiar en ti. Te puedo tener esa confianza para que si en algún momento me siento mal, te puedo llamar. Creo que ahora tengo una gran responsabilidad. Tengo una confianza con ella. Y ella me tiene una gran confianza. Yo desde siempre le he tenido una gran confianza. Le he contado mis problemas y todo ese tipo de cosas. Pero yo no sentía lo mismo. Y intenté tener esa confianza de ella en ese aspecto. Yo la quiero a ella. Y no la quiero dañar. En serio que no.
+    <p>
+        El día de ayer, Karina me puso una pregunta. Me planteó algo. Me hizo preguntas, me cuestionó. No de la manera mala, sino de la manera buena, sino para conocerme más. Es interesante, le he dicho que la mente de las personas, porque así lo veo yo, son magníficas. Grandes. Galaxias. Planetas. Pero... Pero estos últimos días yo me he estado sintiendo mal. Terriblemente mal. No me siento suficiente para mi novia. No me siento suficiente para mí. No quiero seguir haciendo videos para YouTube. Ya no los hago. Ya no ido a nadar. Ya no programo. Solamente programo y sigo programando para este documento, toda esta página que he estado haciendo durante todo este año. Quiero simplemente... dejar de existir. Dejar de estar aquí. Pero no se puede eso. Quiero terminar alguna vez con todo esto. En fin. Ese no es el punto. Ese no es el tema. Karina también ha estado pasando unos días malos. Y totalmente la entiendo. Sabes, somos personas. Cambiamos constantemente. Karina me planteó una pregunta. La cual es causante de sus pequeñas, grandes ansiedades. Ataques de ansiedad. Me ha dicho. Me ha preguntado. ¿Quieres a las personas porque realmente las quieres? ¿Quieres a las personas porque realmente las quieres? ¿O las quieres porque quieres conocer más su forma de pensar? Y me puso a pensar un buen rato. Es decir. Mi forma de pensar sobre eso. Llegar a la conclusión. Mi forma de pensar sobre eso es. No voy a querer a nadie. Si no quiero saber su forma de pensar. Pero tampoco me interesa la forma de pensar de alguien que no quiero. Entonces ahí es como un duelo. Por así decirlo. Si los divides. Porque una cosa no es nada si no se complementa de la otra. Entonces es como algo interno que podría llegar a detener yo. Ella me gusta. A ella yo la quiero. Me interesa tanto su forma de pensar. Tanto su forma de querer. Tanto todo lo que ella tiene. Sus características. Para esto tenemos que subdividirlo en muchas partes. Y tener una idea. Y tener una idea. Y tener una idea. Y tener una idea. Para esto tenemos que subdividirlo en muchas partes. Y tenemos que. Que tomar en cuenta muchos aspectos porque si lo dejamos solamente. Querer. Y saber la forma de pensar de alguien. Se queda en el aire. Es muy general. Entonces tendríamos que ser más específicos en ese aspecto con todo eso. Eso es lo que yo le dije. Y Karina solamente estuvo escuchándome. Realmente. Le dije que si no me interesara su forma de pensar no la querría. Una cosa lleva de la mano a la otra. Si solamente la quisiera ni siquiera le preguntaría como es que piensa. O ni siquiera me interesaría la forma en la que ella piensa. Sus sentimientos me importarían solamente. Sus sentimientos hacia mí. Sus sentimientos. Solamente eso me interesaría. También como se ve. Y ya. Es todo. Más sin embargo yo quiero conocerla más. Pero si solamente quisiera conocerla más no la estaría queriendo. Yo quiero conocer más de su pasado. Su forma de pensar. Cómo es que se formó hasta ahora. Me interesa saber de ella. Y me interesa porque la quiero. No puedo querer a alguien si no me interesa su forma de pensar. Y no me puede interesar la forma de pensar de alguien si no quiero a ese alguien. No podemos admirar a las personas solamente por ser ellos. Sino que hay algo detrás. Queremos saber de su pasado. Queremos saber cómo están ahí. O las miramos a las personas por cómo llegaron hasta ahí. Las queremos. Ya sea por... Bueno, esto ya se divide en muchas partes de cómo sea nuestra manera de pensar. O hasta cómo queremos a las personas. Ya sea en el ámbito familiar, en amigos, pareja, siendo fan de otra persona. Y le puse esa idea. Me hizo pensar mucho. Pero yo deduje que eso me lo preguntó. Porque no sabe si confiar en mí. Para contar algo más íntimo. Y al final estuve en lo correcto. Creo que dije las palabras correctas. Porque antes de colgarme, me dijo... Entonces, si yo... Entonces yo puedo confiar en ti. Te puedo tener esa confianza para que si en algún momento me siento mal, te puedo llamar. Creo que ahora tengo una gran responsabilidad. Tengo una confianza con ella. Y ella me tiene una gran confianza. Yo desde siempre le he tenido una gran confianza. Le he contado mis problemas y todo ese tipo de cosas. Pero yo no sentía lo mismo. Y intenté tener esa confianza de ella en ese aspecto. Yo la quiero a ella. Y no la quiero dañar. En serio que no.
         <br>
         tengo miedo de compartir esta pagina con ella, no se lo eh compartido a nadie, tengo miedo de lo que pueda pasar, que podra pasar? tengo miedo, en fin. la vida es una y la vida se vive muajajajaja.
     </p>
+    <h3 class="fecha">Por que yo no? 14/10/24</h3>
+    <p> 
+        <div id="Hora"><p>Hora: 12:50 A.m</p></div>
+        Hay 2 formas de ver esto. Como una queja o como una manera de insentivarnos a seguir adelante con nuestras metas, podemos ver a las otras personas cumplir sus metas a base de tropiesos y ver como poco a poco van aprendiendo de ello y podemos quejarnos diciendo ¿Por qué yo no? y no hacer nad ao tambien podemos decir lo mismo pero con tal de avanzar, progresar como mejores personas, volvernos trascendentales o trascender en este tipo de cosas, quiero progresar. <br>
+        Yo lo veo de las 2 formas, yo creo que todos lo podemos ver de las 2 formas, ya que podemos ver un problema o meta que alguien supero pero qu enos creemos capacers de tambien poder superar ese obstaculo o a veces tenemos tanto miedo de fallar y vemos el obstaculo tan grande y vemos a los demas cumplir sus metas tan bien, con los mismos obstaculos y simplemente podemos decir "¿Por que yo no?" quiero modificar un poco el formato en el cual hago estas acotaciones, poner mis pensamientos y poner la hora en la cual la estoy escribiendo aparte de eso y tambien seria buena idea poner un par con un reloj con fecha y hara con un position fix y un indexZ de 999, creo que lo hare.
+    </p>
+    ...
 </body>
 </html>
